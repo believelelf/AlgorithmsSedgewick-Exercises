@@ -1,4 +1,4 @@
-package com.weiquding.algorithmsSedgewick;
+package com.weiquding.algorithmsSedgewick.fundamentals;
 
 /**
  * @author wubai
