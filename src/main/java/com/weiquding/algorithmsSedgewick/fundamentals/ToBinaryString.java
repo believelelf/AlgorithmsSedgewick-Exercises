@@ -13,5 +13,9 @@ public class ToBinaryString {
             s = i%2 + s;
         }
         System.out.println(s);
+
+        String ss = "abc";
+        String sss = new String("abc");
+        System.out.println(ss == sss);
     }
 }
