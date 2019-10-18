@@ -17,22 +17,30 @@ public class PatternDemo {
         System.out.println(findPattern("aabb", "北京,吉林,吉林,北京"));
         System.out.println(findPattern("baab", "北京,吉林,吉林,北京"));
     }
-    public static boolean findPattern(String pattern, String str){
-        if(pattern == null || str == null){
+
+    public static boolean findPattern(String pattern, String str) {
+        if (pattern == null || str == null) {
             return false;
         }
-        char [] pChars = pattern.toCharArray();
+        char[] patterns = pattern.toCharArray();
         String[] strs = str.split(",");
-        if(pChars.length != strs.length){
+        if (patterns.length != strs.length) {
             return false;
         }
-        Map<Character,String> map = new HashMap<>();
-        for(int i = 0; i < pChars.length; i++){
-            str = map.get(pChars[i]);
-            if(str != null && !str.equals(strs[i])){
-                return false;
+        Map<Character, String> char2Str = new HashMap<>();
+        Map<String, Character> str2Char = new HashMap<>();
+        for (int i = 0; i < patterns.length; i++) {
+            if (char2Str.containsKey(patterns[i])) {
+                if (!char2Str.get(patterns[i]).equals(strs[i])) {
+                    return false;
+                }
+            } else {
+                if (str2Char.containsKey(strs[i])) {
+                    return false;
+                }
+                char2Str.put(patterns[i], strs[i]);
+                str2Char.put(strs[i], patterns[i]);
             }
-            map.put(pChars[i], strs[i]);
         }
         return true;
     }
